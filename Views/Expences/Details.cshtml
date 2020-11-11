@@ -1,0 +1,85 @@
+﻿@model Expences1.Models.ExpencesTable
+
+@{
+    ViewBag.Title = "Details";
+    ViewBag.Header = "Entry Details";
+}
+
+
+
+<div>
+   
+   
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Catagory.CatagoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catagory.CatagoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemTable.ItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemTable.ItemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaidAmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaidAmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,89 @@
+﻿@*@model Expences1.Models.ExpencesTable*@
+@model IEnumerable<Expences1.Models.ExpencesTable>
+
+
+@{
+    ViewBag.Title = "Reports";
+    ViewBag.Header = "Report";
+}
+
+@using (@Html.BeginForm("Reports", "Expences", FormMethod.Get))
+{
+
+    @Html.RadioButton("searchBy", "Catagory") <text> Catagory</text>
+    <div class="form-group">
+
+        <div class="col-md-3">
+            @Html.DropDownList("search1", ViewData["CId"] as SelectList, new { @class = "form-control" })
+
+        </div>
+    </div>
+    <br />
+    @Html.RadioButton("searchBy", "Item") <text> Item</text>
+
+    <div class="form-group">
+
+        <div class="col-md-3">
+            @Html.DropDownList("ItemIdentity", ViewData["ItemId"] as SelectList, new { @class = "form-control" })
+
+        </div>
+    </div>
+    <br />
+    @Html.RadioButton("searchBy", "Supplier") <text> Suppliers</text>
+
+    <div class="form-group">
+
+        <div class="col-md-3">
+            @Html.DropDownList("search", ViewData["Suppliers"] as SelectList, new { @class = "form-control" })
+
+        </div>
+    </div>
+    <br />
+    @Html.RadioButton("searchBy", "all", true) <text> All</text>
+    <input type="submit" value="search" />
+
+
+
+}
+
+
+
+
+
+
+
+<table class="table">
+    <tr>
+        <th>
+        Quantity
+        </th>        
+        <th>
+            Total Amount
+        </th>
+        <th>
+            Paid Amount
+        </th>
+        <th>
+            Remaining Amount
+        </th>
+
+    </tr>
+
+
+    <tr>
+        <td>
+            <h3><b><font color="Black">@Model.Sum(i => i.Qty)</font></b></h3>
+        </td>
+        <td>
+            <h3><b><font color="Blue">@Model.Sum(i => i.TotAmt)</font></b></h3>
+        </td>
+        <td>
+            <h3><b><font color="Green">@Model.Sum(i => i.PaidAmt)</font></b></h3>
+        </td>
+        <td>
+            <h3><b><font color="Red">@Model.Sum(i => i.RemainingAmt)</font></b></h3>
+        </td>
+
+    </tr>
+
+</table>

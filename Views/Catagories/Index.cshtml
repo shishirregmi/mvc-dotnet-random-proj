@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Expences1.Models.Catagory>
+
+@{
+    ViewBag.Title = "Catagories";
+    ViewBag.Header = "Catagories Management";
+}
+
+
+<p>
+    <button onclick="window.location.href='@Url.Action("Create", "Catagories")'" class="btn btn-success">Create New</button>
+
+</p>
+@using (@Html.BeginForm("Index", "Catagories", FormMethod.Get))
+{
+    <b> Search By:</b>
+
+    @Html.TextBox("search") <input type="submit" value="search" />
+
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CatagoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td>No records match search criteria </td>
+        </tr>
+    }
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CatagoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+               
+                <a href='@Url.Action("Edit", "Catagories", new { id=item.CId})'>
+                    <i class="fa fa-edit" title="Edit"></i>
+                </a>
+
+                <a href='@Url.Action("Details", "Catagories", new { id=item.CId})'>
+                    <i class="fa fa-info-circle" title="Details"></i>
+                </a>
+                <a href='@Url.Action("Delete", "Catagories", new { id=item.CId})'>
+                    <i class="fa  fa-remove" title="Delete"></i>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

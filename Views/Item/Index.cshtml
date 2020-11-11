@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Expences1.Models.ItemTable>
+
+@{
+    ViewBag.Title = "Items";
+    ViewBag.Header = "Item Management";
+}
+
+
+<p>
+    <button onclick="window.location.href='@Url.Action("Create", "Item")'" class="btn btn-success">Create New</button>
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>             
+                <a href='@Url.Action("Edit", "Item", new { id=item.ItemId})'>
+                    <i class="fa fa-edit" title="Edit"></i>
+                </a>
+                <a href='@Url.Action("Details", "Item", new { id=item.ItemId})'>
+                    <i class="fa fa-info-circle" title="Details"></i>
+                </a>
+                <a href='@Url.Action("Delete", "Item", new { id=item.ItemId})'>
+                    <i class="fa  fa-remove" title="Delete"></i>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

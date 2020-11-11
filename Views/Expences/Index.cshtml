@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Expences1.Models.ExpencesTable>
+
+@{
+   
+
+    ViewBag.Title = "Expences";
+    ViewBag.Header = "Expences Management";
+}
+
+    @using (@Html.BeginForm("Index", "Expences", FormMethod.Get))
+    {
+        <b> Search By:</b>
+        @Html.RadioButton("searchBy", "Date") <text> Date</text>
+        @Html.RadioButton("searchBy", "Catagory") <text> Catagory</text>
+        @Html.RadioButton("searchBy", "Item") <text> Item</text>
+        @Html.RadioButton("searchBy", "Suppliers") <text> Supplier's Name</text>
+        @Html.RadioButton("searchBy", "All", true) <text>View All</text>
+       
+        
+        @Html.TextBox("search" )
+        <input type="submit" value="search" />
+        <hr />
+    }
+        <p>
+            <button onclick="window.location.href='@Url.Action("Create", "Expences")'" class="btn btn-success">Create New</button>
+            
+        </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Catagory.CatagoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemTable.ItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotAmt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidAmt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RemainingAmt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+
+            <th></th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td>No records match search criteria </td>
+            </tr>
+        }
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Catagory.CatagoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemTable.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qty)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.Rate)
+                </td>
+                <td> @Html.DisplayFor(modelItem => item.TotAmt)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaidAmt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RemainingAmt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+
+                <td>
+                    
+                        <a href='@Url.Action("Edit", "Expences", new { id = item.Id})'>
+                            <i class="fa fa-edit" title="Edit"></i>
+                        </a>
+                    
+                        <a href='@Url.Action("Details", "Expences", new { id = item.Id})'>
+                            <i class="fa fa-info-circle" title="Details"></i>
+                        </a>
+                        <a href='@Url.Action("Delete", "Expences", new { id = item.Id})'>
+                            <i class="fa  fa-remove" title="Delete"></i>
+                        </a>
+
+
+</td>
+            </tr>
+        }
+        <tr>
+            <td>
+                <h2><b>TOTAL</b></h2>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <h3><b><font color="Blue">@Model.Sum(i => i.TotAmt)</font></b></h3>
+            </td>
+            <td>
+                <h3><b><font color="Green">@Model.Sum(i => i.PaidAmt)</font></b></h3>
+            </td>
+            <td>
+                <h3><b><font color="Red">@Model.Sum(i => i.RemainingAmt)</font></b></h3>
+            </td>
+            <td></td>
+
+            <td></td>
+        </tr>
+
+    </table>
+

@@ -1,0 +1,33 @@
+﻿@model Expences1.Models.Catagory
+
+@{
+    ViewBag.Title = "Details";
+    ViewBag.Header = "View Details";
+}
+
+
+<div>
+  
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CatagoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CatagoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
